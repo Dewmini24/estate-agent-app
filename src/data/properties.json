@@ -10,16 +10,17 @@
       "location": "Petts Wood Road, Petts Wood, Orpington BR5",
       "shortDescription": "Attractive three bedroom semi-detached family home near Petts Wood station.",
       "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior.",
-      "picture": "https://picsum.photos/seed/prop1-0/900/600",
+      "picture": "../images/prop1.jpg",
       "images": [
-        "https://picsum.photos/seed/prop1-0/900/600",
-        "https://picsum.photos/seed/prop1-1/900/600",
-        "https://picsum.photos/seed/prop1-2/900/600",
-        "https://picsum.photos/seed/prop1-3/900/600",
-        "https://picsum.photos/seed/prop1-4/900/600",
-        "https://picsum.photos/seed/prop1-5/900/600"
+        "../images/prop1-1.jpg",
+        "../images/prop1-2.jpg",
+        "../images/prop1-3.jpg",
+        "../images/prop1-4.jpg",
+        "../images/prop1-5.jpg",
+        "../images/prop1-6.jpg",
+        "../images/prop1-7.jpg"
       ],
-      "floorplan": "https://picsum.photos/seed/prop1-floorplan/700/500",
+      "floorplan": "../images/prop1-floorplan.jpg",
       "url": "prop1",
       "added": { "month": "October", "day": 12, "year": 2022 }
     },
@@ -33,16 +34,17 @@
       "location": "Crofton Road, Orpington BR6",
       "shortDescription": "Two double bedroom, two bathroom garden flat, five years old.",
       "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher and a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite with a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms. This apartment, being only five years old, is still under a 10 year building guarantee.",
-      "picture": "https://picsum.photos/seed/prop2-0/900/600",
+      "picture": "../images/prop2.jpg",
       "images": [
-        "https://picsum.photos/seed/prop2-0/900/600",
-        "https://picsum.photos/seed/prop2-1/900/600",
-        "https://picsum.photos/seed/prop2-2/900/600",
-        "https://picsum.photos/seed/prop2-3/900/600",
-        "https://picsum.photos/seed/prop2-4/900/600",
-        "https://picsum.photos/seed/prop2-5/900/600"
+        "../images/prop2-1.jpg",
+        "../images/prop2-2.jpg",
+        "../images/prop2-3.jpg",
+        "../images/prop2-4.jpg",
+        "../images/prop2-5.jpg",
+        "../images/prop2-6.jpg",
+        "../images/prop2-7.jpg"
       ],
-      "floorplan": "https://picsum.photos/seed/prop2-floorplan/700/500",
+      "floorplan": "../images/prop2-floorplan.jpg",
       "url": "prop2",
       "added": { "month": "September", "day": 14, "year": 2022 }
     },
@@ -56,17 +58,17 @@
       "location": "Albany Street, Regent's Park, London NW1",
       "shortDescription": "Spacious four bedroom townhouse close to Regent's Park.",
       "description": "An impressive four bedroom Georgian-style townhouse arranged over three floors, moments from Regent's Park. The ground floor offers a bright double reception room with period features, while the lower ground floor houses a large open-plan kitchen/dining space opening onto a private patio garden. Upstairs there are four generous bedrooms, two bathrooms, and a home office nook. The property retains a wealth of original character including sash windows, ornate cornicing and a feature fireplace, combined with modern comforts such as underfloor heating.",
-      "picture": "https://picsum.photos/seed/prop3-0/900/600",
+      "picture": "../images/prop3.jpg",
       "images": [
-        "https://picsum.photos/seed/prop3-0/900/600",
-        "https://picsum.photos/seed/prop3-1/900/600",
-        "https://picsum.photos/seed/prop3-2/900/600",
-        "https://picsum.photos/seed/prop3-3/900/600",
-        "https://picsum.photos/seed/prop3-4/900/600",
-        "https://picsum.photos/seed/prop3-5/900/600",
-        "https://picsum.photos/seed/prop3-6/900/600"
+        "../images/prop3-1.jpg",
+        "../images/prop3-2.jpg",
+        "../images/prop3-3.jpg",
+        "../images/prop3-4.jpg",
+        "../images/prop3-5.jpg",
+        "../images/prop3-6.jpg",
+        "../images/prop3-7.jpg"
       ],
-      "floorplan": "https://picsum.photos/seed/prop3-floorplan/700/500",
+      "floorplan": "../images/prop3-floorplan.jpg",
       "url": "prop3",
       "added": { "month": "January", "day": 18, "year": 2023 }
     },
@@ -80,16 +82,14 @@
       "location": "Vauxhall Bridge Road, Westminster, London SW1",
       "shortDescription": "Modern one bedroom apartment in the heart of Westminster.",
       "description": "A well-proportioned one bedroom apartment situated on the fourth floor of a well-maintained purpose-built block in the heart of Westminster. The accommodation comprises a bright reception room with an open-plan kitchen, a comfortable double bedroom with fitted wardrobes, and a modern bathroom suite. The development benefits from a concierge service, lift access, and secure entry. Ideally located for Victoria and Pimlico stations, with excellent transport links across London.",
-      "picture": "https://picsum.photos/seed/prop4-0/900/600",
+      "picture": "../images/prop4.jpg",
       "images": [
-        "https://picsum.photos/seed/prop4-0/900/600",
-        "https://picsum.photos/seed/prop4-1/900/600",
-        "https://picsum.photos/seed/prop4-2/900/600",
-        "https://picsum.photos/seed/prop4-3/900/600",
-        "https://picsum.photos/seed/prop4-4/900/600",
-        "https://picsum.photos/seed/prop4-5/900/600"
+        "../images/prop4-1.jpg",
+        "../images/prop4-2.jpg",
+        "../images/prop4-3.jpg",
+        "../images/prop4-4.jpg"
       ],
-      "floorplan": "https://picsum.photos/seed/prop4-floorplan/700/500",
+      "floorplan": "../images/prop4-floorplan.jpg",
       "url": "prop4",
       "added": { "month": "March", "day": 3, "year": 2023 }
     },
@@ -103,16 +103,17 @@
       "location": "Widmore Road, Bromley BR1",
       "shortDescription": "Charming two bedroom cottage-style house near Bromley town centre.",
       "description": "A charming two bedroom cottage-style house tucked away on a quiet residential road within walking distance of Bromley town centre and mainline station. The accommodation briefly comprises a cosy lounge with feature fireplace, a separate dining room, and a recently refitted kitchen. Upstairs are two well-proportioned bedrooms and a family bathroom. Outside there is a low-maintenance rear garden ideal for entertaining, plus off-street parking to the front. Early viewing is highly recommended.",
-      "picture": "https://picsum.photos/seed/prop5-0/900/600",
+      "picture": "../images/prop5.jpg",
       "images": [
-        "https://picsum.photos/seed/prop5-0/900/600",
-        "https://picsum.photos/seed/prop5-1/900/600",
-        "https://picsum.photos/seed/prop5-2/900/600",
-        "https://picsum.photos/seed/prop5-3/900/600",
-        "https://picsum.photos/seed/prop5-4/900/600",
-        "https://picsum.photos/seed/prop5-5/900/600"
+        "../images/prop5-1.jpg",
+        "../images/prop5-2.jpg",
+        "../images/prop5-3.jpg",
+        "../images/prop5-4.jpg",
+        "../images/prop5-5.jpg",
+        "../images/prop5-6.jpg",
+        "../images/prop5-7.jpg"
       ],
-      "floorplan": "https://picsum.photos/seed/prop5-floorplan/700/500",
+      "floorplan": "../images/prop5-floorplan.jpg",
       "url": "prop5",
       "added": { "month": "June", "day": 27, "year": 2023 }
     },
@@ -126,16 +127,18 @@
       "location": "Fitzjohn's Avenue, Hampstead, London NW3",
       "shortDescription": "Three bedroom period conversion flat in leafy Hampstead.",
       "description": "A beautifully presented three bedroom flat forming part of a handsome Victorian conversion in one of Hampstead's most sought-after avenues. The flat retains a host of period features including high ceilings and large sash windows, complemented by a contemporary kitchen and bathroom. There is a generous reception room ideal for entertaining, three well-sized bedrooms, and use of a communal garden to the rear. Hampstead Heath and the vibrant village shops and restaurants are just a short stroll away.",
-      "picture": "https://picsum.photos/seed/prop6-0/900/600",
+      "picture": "../images/prop6.jpg",
       "images": [
-        "https://picsum.photos/seed/prop6-0/900/600",
-        "https://picsum.photos/seed/prop6-1/900/600",
-        "https://picsum.photos/seed/prop6-2/900/600",
-        "https://picsum.photos/seed/prop6-3/900/600",
-        "https://picsum.photos/seed/prop6-4/900/600",
-        "https://picsum.photos/seed/prop6-5/900/600"
+        "../images/prop6-1.jpg",
+        "../images/prop6-2.jpg",
+        "../images/prop6-3.jpg",
+        "../images/prop6-4.jpg",
+        "../images/prop6-5.jpg",
+        "../images/prop6-6.jpg",
+        "../images/prop6-7.jpg",
+        "../images/prop6-8.jpg"
       ],
-      "floorplan": "https://picsum.photos/seed/prop6-floorplan/700/500",
+      "floorplan": "../images/prop6-floorplan.jpg",
       "url": "prop6",
       "added": { "month": "November", "day": 9, "year": 2023 }
     },
@@ -149,18 +152,18 @@
       "location": "Onslow Gardens, South Kensington, London SW7",
       "shortDescription": "Grand five bedroom family home in prestigious South Kensington.",
       "description": "An exceptional five bedroom family residence arranged over four floors in the heart of prestigious South Kensington. The house offers exceptionally proportioned rooms throughout, including a triple-aspect double reception room, a large eat-in kitchen opening to a landscaped garden, and five spacious bedrooms served by three bathrooms. Additional features include a home cinema room, a private garage, and beautifully manicured communal gardens accessible to residents. Superbly located for the museums, shops and restaurants of South Kensington and Knightsbridge.",
-      "picture": "https://picsum.photos/seed/prop7-0/900/600",
+      "picture": "../images/prop7.jpg",
       "images": [
-        "https://picsum.photos/seed/prop7-0/900/600",
-        "https://picsum.photos/seed/prop7-1/900/600",
-        "https://picsum.photos/seed/prop7-2/900/600",
-        "https://picsum.photos/seed/prop7-3/900/600",
-        "https://picsum.photos/seed/prop7-4/900/600",
-        "https://picsum.photos/seed/prop7-5/900/600",
-        "https://picsum.photos/seed/prop7-6/900/600",
-        "https://picsum.photos/seed/prop7-7/900/600"
+        "../images/prop7-1.jpg",
+        "../images/prop7-2.jpg",
+        "../images/prop7-3.jpg",
+        "../images/prop7-4.jpg",
+        "../images/prop7-5.jpg",
+        "../images/prop7-6.jpg",
+        "../images/prop7-8.jpg",
+        "../images/prop7-9.jpg"
       ],
-      "floorplan": "https://picsum.photos/seed/prop7-floorplan/700/500",
+      "floorplan": "../images/prop7-floorplan.jpg",
       "url": "prop7",
       "added": { "month": "February", "day": 21, "year": 2024 }
     }
