@@ -22,7 +22,11 @@ export default function PropertyPage() {
     }
 
     const fav = isFavourite(property.id);
-    const galleryImages = property.gallery.map((src) => ({
+
+    // properties.json stores the photo array under "images" (not "gallery"),
+    // and the "|| []" guards against any single property missing this field
+    // so one bad data entry can't crash the whole page.
+    const galleryImages = (property.images || []).map((src) => ({
         original: src,
         thumbnail: src,
         originalAlt: `${property.location} photo`,
@@ -36,7 +40,11 @@ export default function PropertyPage() {
         <div className="container property-page">
             <Link to="/" className="btn btn-outline property-page__back">← Back to search</Link>
 
-            <ImageGallery items={galleryImages} showPlayButton={false} showFullscreenButton thumbnailPosition="bottom" />
+            {galleryImages.length > 0 ? (
+                <ImageGallery items={galleryImages} showPlayButton={false} showFullscreenButton thumbnailPosition="bottom" />
+            ) : (
+                <p className="property-page__no-images">No photos available for this property yet.</p>
+            )}
 
             <header className="property-page__header">
                 <div>
