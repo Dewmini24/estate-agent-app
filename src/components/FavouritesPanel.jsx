@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFavourites } from "../context/FavouritesContext.jsx";
+import { useToast } from "../context/ToastContext.jsx";
 
 /**
  * Replaces the old static sidebar FavouritesList. A floating action button
@@ -11,6 +12,7 @@ export default function FavouritesPanel({ allProperties }) {
     const { favourites, addFavourite, removeFavourite, clearFavourites } = useFavourites();
     const [isOpen, setIsOpen] = useState(false);
     const [isDragOver, setIsDragOver] = useState(false);
+    const { showToast } = useToast();
 
     function handleDragOver(e) {
         e.preventDefault();
@@ -27,6 +29,7 @@ export default function FavouritesPanel({ allProperties }) {
             addFavourite(property); // reducer already prevents duplicates
             setIsOpen(true); // reveal the drawer so the drop feels confirmed
         }
+        showToast(`Added ${property.location} to favourites`, "success");
     }
 
     // Dragging a favourite row back out onto the FAB removes it - a second
@@ -40,7 +43,10 @@ export default function FavouritesPanel({ allProperties }) {
             <button
                 type="button"
                 className={`fav-fab ${isDragOver ? "fav-fab--over" : ""}`}
-                onClick={() => setIsOpen((v) => !v)}
+                onClick={() => {
+                    removeFavourite(p.id);
+                    showToast(`Removed ${p.location} from favourites`, "remove");
+                }}
                 onDragOver={handleDragOver}
                 onDragLeave={() => setIsDragOver(false)}
                 onDrop={handleDrop}

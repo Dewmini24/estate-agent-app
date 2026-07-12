@@ -1,5 +1,20 @@
 import { Link } from "react-router-dom";
 import { useFavourites } from "../context/FavouritesContext.jsx";
+import { useToast } from "../context/ToastContext.jsx"
+
+const { isFavourite, addFavourite, removeFavourite } = useFavourites();
+const { showToast } = useToast();
+const fav = isFavourite(property.id);
+
+function toggleFavourite() {
+    if (fav) {
+        removeFavourite(property.id);
+        showToast(`Removed ${property.location} from favourites`, "remove");
+    } else {
+        addFavourite(property);
+        showToast(`Added ${property.location} to favourites`, "success");
+    }
+}
 
 function shortDescription(text, max = 110) {
     const plain = text.replace(/<[^>]*>/g, ""); // strip any inline HTML from the JSON description

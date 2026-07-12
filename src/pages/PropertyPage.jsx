@@ -4,6 +4,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/image-gallery.css";
 import propertiesData from "../data/properties.json";
 import { useFavourites } from "../context/FavouritesContext.jsx";
+import { useToast } from "../context/ToastContext.jsx";
 
 const ALL_PROPERTIES = propertiesData.properties;
 
@@ -60,7 +61,15 @@ export default function PropertyPage() {
                     <button
                         type="button"
                         className={`btn ${fav ? "btn-primary" : "btn-outline"}`}
-                        onClick={() => (fav ? removeFavourite(property.id) : addFavourite(property))}
+                        onClick={() => {
+                            if (fav) {
+                                removeFavourite(property.id);
+                                showToast(`Removed ${property.location} from favourites`, "remove");
+                            } else {
+                                addFavourite(property);
+                                showToast(`Added ${property.location} to favourites`, "success");
+                            }
+                        }}
                         aria-pressed={fav}
                     >
                         {fav ? "♥ Saved to favourites" : "♡ Add to favourites"}
