@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Colour tokens - blue gradient / glassmorphism theme */
   --color-bg: #f6f1fd;
   --color-bg-alt: #f3e8ff;
   --color-surface: #ffffff;
@@ -19,11 +18,9 @@
   --gradient-hero: linear-gradient(135deg, #1e1b4b 0%, #6d28d9 40%, #db2777 75%, #f97316 100%);
   --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 55%, #f97316 100%);
 
-  /* Type tokens */
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Inter", system-ui, sans-serif;
 
-  /* Layout tokens */
   --radius-lg: 26px;
   --radius-md: 16px;
   --radius-pill: 999px;
@@ -123,7 +120,6 @@ img {
   color: var(--color-ink);
 }
 
-/* Base card: soft white surface with blue-tinted shadow */
 .card {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
@@ -131,7 +127,6 @@ img {
   overflow: hidden;
 }
 
-/* Glass card: frosted panel used over the gradient hero / floating UI */
 .glass {
   background: var(--color-glass);
   border: 1px solid var(--color-glass-border);
@@ -263,38 +258,67 @@ img {
   gap: 20px;
   position: sticky;
   top: 90px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  padding-right: 4px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-light) transparent;
 }
 
-/* ---------- Search form (glass panel over the hero) ---------- */
+.search-page__form-col::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-page__form-col::-webkit-scrollbar-thumb {
+  background: var(--color-primary-light);
+  border-radius: var(--radius-pill);
+}
+
+.search-page__form-col::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Search form ---------- */
 .search-form {
-  padding: 26px;
+  padding: 28px 26px 26px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  background: var(--color-glass);
-  border: 1px solid var(--color-glass-border);
-  box-shadow: var(--shadow-glass);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  gap: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-card);
 }
 
 .search-form__group {
   border: none;
-  padding: 0;
+  padding: 20px 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.search-form__group:first-of-type {
+  padding-top: 4px;
+}
+
+.search-form__group:last-of-type {
+  border-bottom: none;
+  padding-bottom: 4px;
 }
 
 .search-form__group legend {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-ink-soft);
-  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-ink);
+  font-weight: 600;
   padding: 0;
   margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .search-form__row {
@@ -305,17 +329,211 @@ img {
 
 .search-form__row>* {
   flex: 1;
+  min-width: 0;
 }
 
 .search-form__actions {
   display: flex;
   gap: 10px;
-  margin-top: 6px;
+  margin-top: 20px;
+}
+
+.search-form__submit {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.88rem;
+  padding: 14px 14px;
+  gap: 6px;
+}
+
+.search-form__submit svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.search-form__actions>.btn-outline {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 14px 16px;
 }
 
 .btn-small {
   padding: 6px 14px;
   font-size: 0.8rem;
+}
+
+.search-form__title {
+  margin-bottom: 6px;
+}
+
+.search-form__title h2 {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.search-form__title p {
+  color: var(--color-ink-soft);
+  font-size: 0.84rem;
+  margin: 0;
+}
+
+.search-form__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.16), rgba(236, 72, 153, 0.16));
+  color: var(--color-primary-dark);
+  flex-shrink: 0;
+}
+
+.search-form__icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.search-form__reveal {
+  margin-top: 8px;
+  animation: reveal-in 0.2s ease;
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- react-widgets: DropdownList / DatePicker / Combobox ----------
+   These already render correctly (confirmed working in the "Added after" /
+   calendar screenshots), so keep this styling as-is. */
+.search-form .rw-widget,
+.search-form .rw-widget-picker,
+.search-form .rw-widget-input,
+.search-form input.rw-input {
+  width: 100%;
+}
+
+.search-form .rw-widget-picker {
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-form .rw-widget-picker:hover {
+  border-color: var(--color-primary-light);
+}
+
+.search-form .rw-widget-picker.rw-state-focus,
+.search-form .rw-widget-picker:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.search-form input[class*="rw-input"] {
+  color: var(--color-ink);
+}
+
+.search-form .rw-picker-caret,
+.search-form [class*="rw-picker-btn"] {
+  color: var(--color-primary);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.search-form [class*="rw-picker-btn"] {
+  border-radius: 8px;
+}
+
+.search-form [class*="rw-picker-btn"]:hover {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--color-primary-dark);
+}
+
+/* ---------- Price / Bedrooms range rows ----------
+   Rebuilt to avoid the broken "merged pill" approach. Each Min/Max
+   NumberPicker keeps its own self-contained rounded box (border, radius,
+   background all live on the SAME element that react-widgets renders,
+   scoped narrowly instead of trying to force one shared pill background
+   across two independent widgets) — this is what was causing the
+   stretched, cut-off blob behind "to". The divider now sits cleanly
+   between two separate boxes instead of overlapping them. */
+.range-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.range-group>.rw-widget,
+.range-group>.rw-widget-picker {
+  flex: 1;
+  min-width: 0;
+}
+
+.range-group .rw-widget-picker {
+  background: var(--color-bg-alt);
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+.range-group .rw-widget-picker.rw-state-focus,
+.range-group .rw-widget-picker:focus-within {
+  background: #fff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.range-group input[class*="rw-input"] {
+  font-size: 0.85rem;
+  padding: 6px 8px;
+  background: transparent;
+}
+
+.range-group input[class*="rw-input"]::placeholder {
+  color: var(--color-ink-soft);
+  opacity: 0.75;
+}
+
+.range-group [class*="rw-picker-btn"],
+.range-group button[class*="rw-btn"] {
+  width: 22px;
+  min-width: 22px;
+  color: var(--color-primary);
+  background: rgba(139, 92, 246, 0.08);
+  border-radius: 6px;
+}
+
+.range-group [class*="rw-picker-btn"]:hover,
+.range-group button[class*="rw-btn"]:hover {
+  background: rgba(139, 92, 246, 0.18);
+  color: var(--color-primary-dark);
+}
+
+.range-group__divider {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-ink-soft);
 }
 
 /* ---------- Favourites panel ---------- */
@@ -445,6 +663,15 @@ img {
   font-size: 1.15rem;
   color: var(--color-danger);
   box-shadow: var(--shadow-soft);
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.favourite-btn:hover {
+  transform: scale(1.12);
+}
+
+.favourite-btn:active {
+  transform: scale(0.94);
 }
 
 .favourite-btn--active {
@@ -549,7 +776,6 @@ img {
   border: 1px solid var(--color-line);
 }
 
-/* react-tabs restyled to match the pill / gradient theme */
 .react-tabs__tab-list {
   border-bottom: none;
   display: flex;
@@ -579,11 +805,7 @@ img {
 }
 
 /* =========================================================
-   Responsive layout: three hand-written breakpoints.
-   Desktop: sidebar + results grid. Tablet (768-1023px): search
-   form stacks above a 2-column results grid, using the extra
-   width instead of wasting it on a single column. Mobile
-   (<=640px): everything collapses to one column.
+   Responsive layout
    ========================================================= */
 @media (min-width: 768px) and (max-width: 1023px) {
   .results-grid {
@@ -599,6 +821,9 @@ img {
 
   .search-page__form-col {
     position: static;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 
   .site-header__inner {
@@ -630,6 +855,27 @@ img {
   .search-form__row {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .search-form .rw-widget-picker {
+    min-height: 44px;
+  }
+
+  .range-group [class*="rw-picker-btn"],
+  .range-group button[class*="rw-btn"] {
+    width: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .range-group__divider {
+    width: 30px;
+    height: 30px;
+  }
+
+  .search-form__submit,
+  .search-form__actions>.btn-outline {
+    min-height: 44px;
   }
 }
 
@@ -686,6 +932,21 @@ img {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 6px rgba(30, 27, 75, 0.3);
+  animation: badge-pop 0.35s ease;
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.4);
+  }
+
+  60% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .fav-drawer {
@@ -704,6 +965,8 @@ img {
   transform: translateX(100%);
   transition: transform 0.25s ease;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .fav-drawer--open {
@@ -759,44 +1022,6 @@ img {
   z-index: 44;
 }
 
-/* ---------- Gradient pill tags (type / bedrooms / tenure) ---------- */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-/* Gradient stops darkened at the light end so white text keeps
-   readable contrast across the whole pill, not just one side. */
-.tag--type {
-  background: linear-gradient(135deg, #8b5cf6, #ec4899);
-  color: #fff;
-}
-
-.tag--beds {
-  background: linear-gradient(135deg, #0e7490, #06b6d4);
-  color: #fff;
-}
-
-.tag--tenure {
-  background: linear-gradient(135deg, #c2410c, #f97316);
-  color: #fff;
-}
-
-.property-card__tags,
-.property-page__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 4px 0 6px;
-}
-
 @media (max-width: 640px) {
   .fav-fab {
     bottom: 20px;
@@ -810,7 +1035,45 @@ img {
   }
 }
 
-/* ---------- Toast notifications (gradient chip style) ---------- */
+/* ---------- Gradient pill tags ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-transform: uppercase;
+  transition: transform 0.15s ease;
+}
+
+.tag--type {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+}
+
+.tag--beds {
+  background: linear-gradient(135deg, #0e7490, #06b6d4);
+}
+
+.tag--tenure {
+  background: linear-gradient(135deg, #c2410c, #f97316);
+}
+
+.property-card:hover .tag {
+  transform: translateY(-1px);
+}
+
+.property-card__tags,
+.property-page__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 6px;
+}
+
+/* ---------- Toast notifications ---------- */
 .toast-stack {
   position: fixed;
   top: 24px;
@@ -878,49 +1141,6 @@ img {
   }
 }
 
-/* ---------- Extra interaction polish ---------- */
-.favourite-btn {
-  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
-}
-
-.favourite-btn:hover {
-  transform: scale(1.12);
-}
-
-.favourite-btn:active {
-  transform: scale(0.94);
-}
-
-.btn:active {
-  transform: scale(0.97);
-}
-
-.fav-fab__badge {
-  animation: badge-pop 0.35s ease;
-}
-
-@keyframes badge-pop {
-  0% {
-    transform: scale(0.4);
-  }
-
-  60% {
-    transform: scale(1.25);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-.tag {
-  transition: transform 0.15s ease;
-}
-
-.property-card:hover .tag {
-  transform: translateY(-1px);
-}
-
 @media (max-width: 640px) {
   .toast-stack {
     top: auto;
@@ -931,21 +1151,438 @@ img {
   }
 }
 
-/* ---------- Fix react-widgets inputs collapsing inside flex rows ----------
-   react-widgets sets `.rw-widget-input { width: inherit }`, expecting to
-   inherit 100% from its CSS-grid parent (.rw-widget-picker). Inside our
-   flexbox .search-form__row that inheritance chain doesn't resolve, so the
-   actual <input> shrinks to its browser-default size while the surrounding
-   picker box (which does have width:100%) renders full width - producing
-   a large empty box with a tiny floating input. Force it explicitly. */
-.search-form__row>* {
-  min-width: 0;
-  /* let flex children shrink below their content size */
+/* ---------- Extra interaction polish ---------- */
+.btn:active {
+  transform: scale(0.97);
 }
 
-.search-form .rw-widget,
-.search-form .rw-widget-picker,
-.search-form .rw-widget-input,
-.search-form input.rw-input {
+/* =========================================================
+   CUTE MODERN SEARCH FORM
+   ========================================================= */
+
+.cute-search {
+  position: relative;
+  padding: 0;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(196, 181, 253, 0.5);
+  box-shadow:
+    0 25px 60px -25px rgba(91, 33, 182, 0.35),
+    0 8px 25px -15px rgba(236, 72, 153, 0.3);
+  overflow: hidden;
+}
+
+/* Header */
+
+.cute-search__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 22px 20px;
+  background:
+    radial-gradient(circle at 90% 0%,
+      rgba(249, 115, 22, 0.15),
+      transparent 40%),
+    linear-gradient(135deg,
+      rgba(139, 92, 246, 0.12),
+      rgba(236, 72, 153, 0.08));
+  border-bottom: 1px solid rgba(196, 181, 253, 0.35);
+}
+
+.cute-search__header-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 1.5rem;
+  box-shadow: 0 12px 24px -10px rgba(236, 72, 153, 0.6);
+  transform: rotate(-4deg);
+}
+
+.cute-search__header h2 {
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+}
+
+.cute-search__header p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* Scroll area */
+
+.cute-search__scroll {
+  max-height: 540px;
+  overflow-y: auto;
+  padding: 10px 20px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #c084fc transparent;
+}
+
+.cute-search__scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.cute-search__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cute-search__scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(#8b5cf6, #ec4899);
+  border-radius: 999px;
+}
+
+/* Filter section */
+
+.cute-filter {
+  border: 0;
+  margin: 0;
+  padding: 18px 2px;
+  border-bottom: 1px dashed rgba(196, 181, 253, 0.55);
+}
+
+.cute-filter:last-child {
+  border-bottom: 0;
+}
+
+.cute-filter legend {
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.cute-filter legend>span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cute-filter legend strong {
+  font-size: 0.88rem;
+  color: var(--color-ink);
+}
+
+.cute-filter legend small {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+}
+
+/* Cute filter icons */
+
+.cute-filter__icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+  color: #7c3aed;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.cute-filter__icon--pink {
+  background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+  color: #db2777;
+}
+
+.cute-filter__icon--blue {
+  background: linear-gradient(135deg, #e0f2fe, #cffafe);
+  color: #0891b2;
+}
+
+.cute-filter__icon--orange {
+  background: linear-gradient(135deg, #ffedd5, #fed7aa);
+  color: #ea580c;
+}
+
+.cute-filter__icon--green {
+  background: linear-gradient(135deg, #dcfce7, #d1fae5);
+  color: #059669;
+}
+
+/* React widgets */
+
+.cute-search .rw-widget-picker {
+  min-height: 44px;
+  border: 1.5px solid #eee5fa;
+  border-radius: 15px;
+  background: #faf8ff;
+  box-shadow: none;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.cute-search .rw-widget-picker:hover {
+  border-color: #c084fc;
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.cute-search .rw-widget-picker.rw-state-focus,
+.cute-search .rw-widget-picker:focus-within {
+  border-color: #a855f7;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.12);
+}
+
+.cute-search input[class*="rw-input"] {
+  font-size: 0.82rem;
+  color: var(--color-ink);
+}
+
+.cute-search input[class*="rw-input"]::placeholder {
+  color: #a49bad;
+}
+
+/* Price and bedrooms */
+
+.cute-range {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr);
+  align-items: end;
+  gap: 6px;
+}
+
+.cute-range__item {
+  min-width: 0;
+}
+
+.cute-range__label {
+  display: block;
+  margin: 0 0 6px 5px;
+  color: #9b8bab;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.cute-range__line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  color: #c4b5fd;
+  font-weight: 700;
+}
+
+.cute-range .rw-widget {
+  width: 100%;
+  min-width: 0;
+}
+
+.cute-range .rw-widget-picker {
+  width: 100%;
+  min-width: 0;
+}
+
+.cute-range button[class*="rw-btn"],
+.cute-range [class*="rw-picker-btn"] {
+  width: 25px;
+  min-width: 25px;
+  padding: 0;
+  color: #8b5cf6;
+}
+
+/* Date reveal */
+
+.cute-search__reveal {
+  margin-top: 10px;
+  animation: cuteReveal 0.28s ease;
+}
+
+@keyframes cuteReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cute-date-range {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+  align-items: center;
+  gap: 5px;
+}
+
+.cute-date-range>span {
+  text-align: center;
+  color: #a855f7;
+  font-size: 0.85rem;
+}
+
+/* Sticky actions */
+
+.cute-search__actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 16px 20px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-top: 1px solid rgba(196, 181, 253, 0.35);
+  box-shadow: 0 -12px 30px -22px rgba(91, 33, 182, 0.4);
+}
+
+.cute-search__submit {
+  flex: 1;
+  min-height: 48px;
+  border: 0;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 12px 25px -12px rgba(236, 72, 153, 0.7);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.cute-search__submit span {
+  font-size: 1.2rem;
+}
+
+.cute-search__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 17px 30px -12px rgba(236, 72, 153, 0.75);
+}
+
+.cute-search__submit:active {
+  transform: scale(0.97);
+}
+
+.cute-search__clear {
+  min-height: 48px;
+  padding: 0 15px;
+  border: 1.5px solid #eee5fa;
+  border-radius: 16px;
+  background: #faf8ff;
+  color: var(--color-ink-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.cute-search__clear:hover {
+  background: #fce7f3;
+  color: #db2777;
+  border-color: #f9a8d4;
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .cute-search {
+    border-radius: 22px;
+  }
+
+  .cute-search__header {
+    padding: 20px 18px 17px;
+  }
+
+  .cute-search__header-icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .cute-search__header h2 {
+    font-size: 1.2rem;
+  }
+
+  .cute-search__scroll {
+    max-height: none;
+    overflow-y: visible;
+    padding: 8px 16px;
+  }
+
+  .cute-search__actions {
+    padding: 14px 16px 17px;
+  }
+
+  .cute-search__submit {
+    min-height: 50px;
+  }
+}
+/* =========================================================
+   NUMBER PICKER + / - BUTTON COLORS
+   ========================================================= */
+
+/* PLUS button */
+.cute-range button[class*="rw-btn"]:first-child {
+  background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+  color: #7c3aed;
+  border-radius: 8px 8px 3px 3px;
+}
+
+/* MINUS button */
+.cute-range button[class*="rw-btn"]:last-child {
+  background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+  color: #db2777;
+  border-radius: 3px 3px 8px 8px;
+}
+
+/* PLUS hover */
+.cute-range button[class*="rw-btn"]:first-child:hover {
+  background: #8b5cf6;
+  color: white;
+}
+
+/* MINUS hover */
+.cute-range button[class*="rw-btn"]:last-child:hover {
+  background: #ec4899;
+  color: white;
+}
+/* =========================================================
+   DATE PICKER CALENDAR BUTTON COLOR
+   ========================================================= */
+
+/* Calendar button */
+.cute-search__reveal button[class*="rw-btn"],
+.cute-date-range button[class*="rw-btn"] {
+  background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+  color: #7c3aed;
+  border-radius: 10px;
+  margin: 4px;
+}
+
+/* Calendar button hover */
+.cute-search__reveal button[class*="rw-btn"]:hover,
+.cute-date-range button[class*="rw-btn"]:hover {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: #fff;
+}
+
+/* Calendar icon */
+.cute-search__reveal [class*="rw-i-calendar"],
+.cute-date-range [class*="rw-i-calendar"] {
+  color: inherit;
 }

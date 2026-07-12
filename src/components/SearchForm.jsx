@@ -7,11 +7,14 @@ import Combobox from "react-widgets/Combobox";
 const TYPES = ["Any", "House", "Flat"];
 const DATE_MODES = ["Any time", "Added after", "Added between"];
 
-/**
- * Controlled search form. Every field is optional - the parent's search
- * handler (filterProperties) simply ignores fields left blank, which is
- * what lets any combination of 1-5 criteria work.
- */
+const icons = {
+    type: "⌂",
+    price: "£",
+    beds: "☾",
+    date: "♡",
+    postcode: "⌖",
+};
+
 export default function SearchForm({ postcodeOptions, onSearch, onClear }) {
     const [type, setType] = useState("Any");
     const [minPrice, setMinPrice] = useState(null);
@@ -30,6 +33,7 @@ export default function SearchForm({ postcodeOptions, onSearch, onClear }) {
 
     function handleSubmit(e) {
         e.preventDefault();
+
         onSearch({
             type: type === "Any" ? "" : type,
             minPrice,
@@ -54,90 +58,221 @@ export default function SearchForm({ postcodeOptions, onSearch, onClear }) {
         setDateFrom(null);
         setDateTo(null);
         setPostcode("");
+
         onClear();
     }
 
     return (
-        <form className="search-form card" onSubmit={handleSubmit} aria-label="Property search">
-            <fieldset className="search-form__group">
-                <legend>Property type</legend>
-                <DropdownList data={TYPES} value={type} onChange={setType} aria-label="Property type" />
-            </fieldset>
+        <form
+            className="search-form cute-search"
+            onSubmit={handleSubmit}
+            aria-label="Property search"
+        >
+            <div className="cute-search__header">
+                <div className="cute-search__header-icon">⌕</div>
 
-            <fieldset className="search-form__group">
-                <legend>Price range (£)</legend>
-                <div className="search-form__row">
-                    <NumberPicker
-                        placeholder="Min price"
-                        value={minPrice}
-                        onChange={setMinPrice}
-                        min={0}
-                        step={5000}
-                        aria-label="Minimum price"
-                    />
-                    <span aria-hidden="true">to</span>
-                    <NumberPicker
-                        placeholder="Max price"
-                        value={maxPrice}
-                        onChange={setMaxPrice}
-                        min={0}
-                        step={5000}
-                        aria-label="Maximum price"
-                    />
+                <div>
+                    <h2>Find your happy place</h2>
+                    <p>Mix & match filters to discover your perfect home ✨</p>
                 </div>
-            </fieldset>
+            </div>
 
-            <fieldset className="search-form__group">
-                <legend>Bedrooms</legend>
-                <div className="search-form__row">
-                    <NumberPicker
-                        placeholder="Min beds"
-                        value={minBedrooms}
-                        onChange={setMinBedrooms}
-                        min={0}
-                        max={10}
-                        aria-label="Minimum bedrooms"
-                    />
-                    <span aria-hidden="true">to</span>
-                    <NumberPicker
-                        placeholder="Max beds"
-                        value={maxBedrooms}
-                        onChange={setMaxBedrooms}
-                        min={0}
-                        max={10}
-                        aria-label="Maximum bedrooms"
-                    />
-                </div>
-            </fieldset>
+            <div className="cute-search__scroll">
+                <fieldset className="cute-filter">
+                    <legend>
+                        <span className="cute-filter__icon">
+                            {icons.type}
+                        </span>
 
-            <fieldset className="search-form__group">
-                <legend>Date added</legend>
-                <DropdownList data={DATE_MODES} value={dateMode} onChange={setDateMode} aria-label="Date filter mode" />
-                {dateMode === "Added after" && (
-                    <DatePicker value={dateAfter} onChange={setDateAfter} placeholder="Choose a date" aria-label="Added after" />
-                )}
-                {dateMode === "Added between" && (
-                    <div className="search-form__row">
-                        <DatePicker value={dateFrom} onChange={setDateFrom} placeholder="From" aria-label="Added from" />
-                        <DatePicker value={dateTo} onChange={setDateTo} placeholder="To" aria-label="Added to" />
+                        <span>
+                            <strong>Property type</strong>
+                            <small>What are you looking for?</small>
+                        </span>
+                    </legend>
+
+                    <DropdownList
+                        data={TYPES}
+                        value={type}
+                        onChange={setType}
+                        aria-label="Property type"
+                    />
+                </fieldset>
+
+                <fieldset className="cute-filter">
+                    <legend>
+                        <span className="cute-filter__icon cute-filter__icon--pink">
+                            {icons.price}
+                        </span>
+
+                        <span>
+                            <strong>Your budget</strong>
+                            <small>Choose a comfortable price range</small>
+                        </span>
+                    </legend>
+
+                    <div className="cute-range">
+                        <div className="cute-range__item">
+                            <span className="cute-range__label">MIN</span>
+
+                            <NumberPicker
+                                placeholder="£ Min"
+                                value={minPrice}
+                                onChange={setMinPrice}
+                                min={0}
+                                step={5000}
+                                aria-label="Minimum price"
+                            />
+                        </div>
+
+                        <span className="cute-range__line">—</span>
+
+                        <div className="cute-range__item">
+                            <span className="cute-range__label">MAX</span>
+
+                            <NumberPicker
+                                placeholder="£ Max"
+                                value={maxPrice}
+                                onChange={setMaxPrice}
+                                min={0}
+                                step={5000}
+                                aria-label="Maximum price"
+                            />
+                        </div>
                     </div>
-                )}
-            </fieldset>
+                </fieldset>
 
-            <fieldset className="search-form__group">
-                <legend>Postcode area</legend>
-                <Combobox
-                    data={postcodeOptions}
-                    value={postcode}
-                    onChange={setPostcode}
-                    placeholder="e.g. BR5"
-                    aria-label="Postcode area"
-                />
-            </fieldset>
+                <fieldset className="cute-filter">
+                    <legend>
+                        <span className="cute-filter__icon cute-filter__icon--blue">
+                            {icons.beds}
+                        </span>
 
-            <div className="search-form__actions">
-                <button type="submit" className="btn btn-primary">Search properties</button>
-                <button type="button" className="btn btn-outline" onClick={handleClear}>Clear</button>
+                        <span>
+                            <strong>Bedrooms</strong>
+                            <small>How much space do you need?</small>
+                        </span>
+                    </legend>
+
+                    <div className="cute-range">
+                        <div className="cute-range__item">
+                            <span className="cute-range__label">MIN</span>
+
+                            <NumberPicker
+                                placeholder="Min beds"
+                                value={minBedrooms}
+                                onChange={setMinBedrooms}
+                                min={0}
+                                max={10}
+                                aria-label="Minimum bedrooms"
+                            />
+                        </div>
+
+                        <span className="cute-range__line">—</span>
+
+                        <div className="cute-range__item">
+                            <span className="cute-range__label">MAX</span>
+
+                            <NumberPicker
+                                placeholder="Max beds"
+                                value={maxBedrooms}
+                                onChange={setMaxBedrooms}
+                                min={0}
+                                max={10}
+                                aria-label="Maximum bedrooms"
+                            />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset className="cute-filter">
+                    <legend>
+                        <span className="cute-filter__icon cute-filter__icon--orange">
+                            {icons.date}
+                        </span>
+
+                        <span>
+                            <strong>Date added</strong>
+                            <small>Discover fresh listings</small>
+                        </span>
+                    </legend>
+
+                    <DropdownList
+                        data={DATE_MODES}
+                        value={dateMode}
+                        onChange={setDateMode}
+                        aria-label="Date filter mode"
+                    />
+
+                    {dateMode === "Added after" && (
+                        <div className="cute-search__reveal">
+                            <DatePicker
+                                value={dateAfter}
+                                onChange={setDateAfter}
+                                placeholder="Choose a date"
+                                aria-label="Added after"
+                            />
+                        </div>
+                    )}
+
+                    {dateMode === "Added between" && (
+                        <div className="cute-date-range cute-search__reveal">
+                            <DatePicker
+                                value={dateFrom}
+                                onChange={setDateFrom}
+                                placeholder="From"
+                                aria-label="Added from"
+                            />
+
+                            <span>→</span>
+
+                            <DatePicker
+                                value={dateTo}
+                                onChange={setDateTo}
+                                placeholder="To"
+                                aria-label="Added to"
+                            />
+                        </div>
+                    )}
+                </fieldset>
+
+                <fieldset className="cute-filter">
+                    <legend>
+                        <span className="cute-filter__icon cute-filter__icon--green">
+                            {icons.postcode}
+                        </span>
+
+                        <span>
+                            <strong>Postcode area</strong>
+                            <small>Where would you love to live?</small>
+                        </span>
+                    </legend>
+
+                    <Combobox
+                        data={postcodeOptions}
+                        value={postcode}
+                        onChange={setPostcode}
+                        placeholder="Try BR5..."
+                        aria-label="Postcode area"
+                    />
+                </fieldset>
+            </div>
+
+            <div className="cute-search__actions">
+                <button
+                    type="submit"
+                    className="cute-search__submit"
+                >
+                    <span>⌕</span>
+                    Find my home
+                </button>
+
+                <button
+                    type="button"
+                    className="cute-search__clear"
+                    onClick={handleClear}
+                >
+                    Clear all
+                </button>
             </div>
         </form>
     );
