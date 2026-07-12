@@ -930,3 +930,22 @@ img {
     max-width: none;
   }
 }
+
+/* ---------- Fix react-widgets inputs collapsing inside flex rows ----------
+   react-widgets sets `.rw-widget-input { width: inherit }`, expecting to
+   inherit 100% from its CSS-grid parent (.rw-widget-picker). Inside our
+   flexbox .search-form__row that inheritance chain doesn't resolve, so the
+   actual <input> shrinks to its browser-default size while the surrounding
+   picker box (which does have width:100%) renders full width - producing
+   a large empty box with a tiny floating input. Force it explicitly. */
+.search-form__row>* {
+  min-width: 0;
+  /* let flex children shrink below their content size */
+}
+
+.search-form .rw-widget,
+.search-form .rw-widget-picker,
+.search-form .rw-widget-input,
+.search-form input.rw-input {
+  width: 100%;
+}
