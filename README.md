@@ -1,4 +1,4 @@
-# Estate Agent APP (5COSC026W Reassessment)
+# Estate Agent App (5COSC026W Reassessment)
 
 A React single-page application for searching, viewing, and favouriting properties, built for the 5COSC026W coursework brief.
 
