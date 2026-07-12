@@ -49,7 +49,11 @@ export default function PropertyPage() {
             <header className="property-page__header">
                 <div>
                     <h1>{property.location}</h1>
-                    <p className="property-page__meta">{property.type} · {property.bedrooms} bed · {property.tenure}</p>
+                    <div className="property-page__tags">
+                        <span className="tag tag--type">{property.type}</span>
+                        <span className="tag tag--beds">{property.bedrooms} bed</span>
+                        <span className="tag tag--tenure">{property.tenure}</span>
+                    </div>
                 </div>
                 <div className="property-page__price-actions">
                     <p className="property-page__price">£{property.price.toLocaleString()}</p>

@@ -43,7 +43,10 @@ export default function PropertyCard({ property }) {
             <div className="property-card__body">
                 <p className="property-card__price">£{property.price.toLocaleString()}</p>
                 <h3 className="property-card__location">{property.location}</h3>
-                <p className="property-card__meta">{property.type} · {property.bedrooms} bed</p>
+                <div className="property-card__tags">
+                    <span className="tag tag--type">{property.type}</span>
+                    <span className="tag tag--beds">{property.bedrooms} bed</span>
+                </div>
                 <p className="property-card__desc">{shortDescription(property.description)}</p>
                 <Link to={`/property/${property.id}`} className="btn btn-outline property-card__link">
                     View details
