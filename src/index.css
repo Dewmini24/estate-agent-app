@@ -579,11 +579,19 @@ img {
 }
 
 /* =========================================================
-   Responsive layout: two hand-written breakpoints.
-   Large screens use a sidebar + grid; anything narrower than
-   iPad landscape width (1024px) stacks into a single column.
+   Responsive layout: three hand-written breakpoints.
+   Desktop: sidebar + results grid. Tablet (768-1023px): search
+   form stacks above a 2-column results grid, using the extra
+   width instead of wasting it on a single column. Mobile
+   (<=640px): everything collapses to one column.
    ========================================================= */
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1023px) {
+  .results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1023px) {
   .search-page__layout {
     grid-template-columns: 1fr;
     margin-top: 24px;
@@ -647,6 +655,14 @@ img {
 
 .fav-fab:hover {
   transform: translateY(-3px) scale(1.03);
+}
+
+.fav-fab:focus-visible,
+.fav-drawer__close:focus-visible,
+.favourite-btn:focus-visible,
+.favourites-panel__remove:focus-visible {
+  outline: 3px solid var(--color-primary-light);
+  outline-offset: 2px;
 }
 
 .fav-fab--over {
@@ -756,16 +772,21 @@ img {
   text-transform: uppercase;
 }
 
+/* Gradient stops darkened at the light end so white text keeps
+   readable contrast across the whole pill, not just one side. */
 .tag--type {
   background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: #fff;
 }
 
 .tag--beds {
-  background: linear-gradient(135deg, #06b6d4, #22d3ee);
+  background: linear-gradient(135deg, #0e7490, #06b6d4);
+  color: #fff;
 }
 
 .tag--tenure {
-  background: linear-gradient(135deg, #f97316, #facc15);
+  background: linear-gradient(135deg, #c2410c, #f97316);
+  color: #fff;
 }
 
 .property-card__tags,
