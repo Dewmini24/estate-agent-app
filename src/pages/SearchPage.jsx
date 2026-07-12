@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import propertiesData from "../data/properties.json";
 import SearchForm from "../components/SearchForm.jsx";
 import ResultsList from "../components/ResultsList.jsx";
-import FavouritesList from "../components/FavouritesList.jsx";
 import { filterProperties, postcodeArea } from "../utils/search.js";
 import { useFavourites } from "../context/FavouritesContext.jsx";
 
@@ -28,8 +27,8 @@ export default function SearchPage() {
         setHasSearched(false);
     }
 
-    // Dropping a favourite-list item back onto the results area removes it
-    // from favourites (drag-out-to-remove), complementing the delete button.
+    // Dropping a favourite-drawer item back onto the results area removes it
+    // from favourites, complementing the delete button and the FAB drop target.
     function handleResultsDrop(e) {
         const id = e.dataTransfer.getData("application/x-remove-favourite");
         if (id) removeFavourite(id);
@@ -47,7 +46,6 @@ export default function SearchPage() {
             <div className="container search-page__layout">
                 <div className="search-page__form-col">
                     <SearchForm postcodeOptions={postcodeOptions} onSearch={handleSearch} onClear={handleClear} />
-                    <FavouritesList allProperties={ALL_PROPERTIES} />
                 </div>
 
                 <div
