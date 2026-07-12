@@ -23,17 +23,26 @@ export default function FavouritesPanel({ allProperties }) {
     function handleDrop(e) {
         e.preventDefault();
         setIsDragOver(false);
+
+        // Dragging a favourite row back onto the FAB removes it.
+        const removeId = e.dataTransfer.getData("application/x-remove-favourite");
+        if (removeId) {
+            const removed = favourites.find((p) => p.id === removeId);
+            removeFavourite(removeId);
+            if (removed) showToast(`Removed ${removed.location} from favourites`, "remove");
+            return;
+        }
+
+        // Otherwise this is a new property being dropped in from the search list.
         const id = e.dataTransfer.getData("text/plain");
         const property = allProperties.find((p) => p.id === id);
         if (property) {
             addFavourite(property); // reducer already prevents duplicates
             setIsOpen(true); // reveal the drawer so the drop feels confirmed
+            showToast(`Added ${property.location} to favourites`, "success");
         }
-        showToast(`Added ${property.location} to favourites`, "success");
     }
 
-    // Dragging a favourite row back out onto the FAB removes it - a second
-    // drag-to-remove path alongside the delete button.
     function handleFavDragStart(e, id) {
         e.dataTransfer.setData("application/x-remove-favourite", id);
     }
@@ -43,10 +52,7 @@ export default function FavouritesPanel({ allProperties }) {
             <button
                 type="button"
                 className={`fav-fab ${isDragOver ? "fav-fab--over" : ""}`}
-                onClick={() => {
-                    removeFavourite(p.id);
-                    showToast(`Removed ${p.location} from favourites`, "remove");
-                }}
+                onClick={() => setIsOpen((prev) => !prev)}
                 onDragOver={handleDragOver}
                 onDragLeave={() => setIsDragOver(false)}
                 onDrop={handleDrop}
@@ -88,7 +94,10 @@ export default function FavouritesPanel({ allProperties }) {
                                 <button
                                     type="button"
                                     className="favourites-panel__remove"
-                                    onClick={() => removeFavourite(p.id)}
+                                    onClick={() => {
+                                        removeFavourite(p.id);
+                                        showToast(`Removed ${p.location} from favourites`, "remove");
+                                    }}
                                     aria-label={`Remove ${p.location} from favourites`}
                                 >
                                     ×

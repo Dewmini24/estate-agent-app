@@ -11,7 +11,11 @@ const ALL_PROPERTIES = propertiesData.properties;
 export default function PropertyPage() {
     const { id } = useParams();
     const property = ALL_PROPERTIES.find((p) => p.id === id);
+
+    // Hooks called unconditionally at the top level, before the early-return
+    // below, to satisfy the Rules of Hooks.
     const { isFavourite, addFavourite, removeFavourite } = useFavourites();
+    const { showToast } = useToast();
 
     if (!property) {
         return (
@@ -24,9 +28,16 @@ export default function PropertyPage() {
 
     const fav = isFavourite(property.id);
 
-    // properties.json stores the photo array under "images" (not "gallery"),
-    // and the "|| []" guards against any single property missing this field
-    // so one bad data entry can't crash the whole page.
+    function handleToggleFavourite() {
+        if (fav) {
+            removeFavourite(property.id);
+            showToast(`Removed ${property.location} from favourites`, "remove");
+        } else {
+            addFavourite(property);
+            showToast(`Added ${property.location} to favourites`, "success");
+        }
+    }
+
     const galleryImages = (property.images || []).map((src) => ({
         original: src,
         thumbnail: src,
@@ -61,15 +72,7 @@ export default function PropertyPage() {
                     <button
                         type="button"
                         className={`btn ${fav ? "btn-primary" : "btn-outline"}`}
-                        onClick={() => {
-                            if (fav) {
-                                removeFavourite(property.id);
-                                showToast(`Removed ${property.location} from favourites`, "remove");
-                            } else {
-                                addFavourite(property);
-                                showToast(`Added ${property.location} to favourites`, "success");
-                            }
-                        }}
+                        onClick={handleToggleFavourite}
                         aria-pressed={fav}
                     >
                         {fav ? "♥ Saved to favourites" : "♡ Add to favourites"}

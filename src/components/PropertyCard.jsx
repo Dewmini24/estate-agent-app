@@ -1,20 +1,6 @@
 import { Link } from "react-router-dom";
 import { useFavourites } from "../context/FavouritesContext.jsx";
-import { useToast } from "../context/ToastContext.jsx"
-
-const { isFavourite, addFavourite, removeFavourite } = useFavourites();
-const { showToast } = useToast();
-const fav = isFavourite(property.id);
-
-function toggleFavourite() {
-    if (fav) {
-        removeFavourite(property.id);
-        showToast(`Removed ${property.location} from favourites`, "remove");
-    } else {
-        addFavourite(property);
-        showToast(`Added ${property.location} to favourites`, "success");
-    }
-}
+import { useToast } from "../context/ToastContext.jsx";
 
 function shortDescription(text, max = 110) {
     const plain = text.replace(/<[^>]*>/g, ""); // strip any inline HTML from the JSON description
@@ -23,6 +9,7 @@ function shortDescription(text, max = 110) {
 
 export default function PropertyCard({ property }) {
     const { isFavourite, addFavourite, removeFavourite } = useFavourites();
+    const { showToast } = useToast();
     const fav = isFavourite(property.id);
 
     function handleDragStart(e) {
@@ -31,8 +18,13 @@ export default function PropertyCard({ property }) {
     }
 
     function toggleFavourite() {
-        if (fav) removeFavourite(property.id);
-        else addFavourite(property);
+        if (fav) {
+            removeFavourite(property.id);
+            showToast(`Removed ${property.location} from favourites`, "remove");
+        } else {
+            addFavourite(property);
+            showToast(`Added ${property.location} to favourites`, "success");
+        }
     }
 
     return (
